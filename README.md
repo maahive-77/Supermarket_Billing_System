@@ -1,4 +1,4 @@
-🛒 Supermarket Billing Queue System (C++)
+ 🛒 Supermarket Billing Queue System (C++)
 
 A D-Mart style billing system developed in C++ using Queue (FIFO) and File Handling, designed to simulate real-world supermarket billing operations.
 
@@ -68,10 +68,7 @@ This project is ideal for:
 🏪 Retail System Simulation
 🙋 Author
 
-Mahendra
-BCA Student | CCNA Certified
-Passionate about Networking & Development
-
+Sanna
 ⭐ Support
 
 If you like this project:
