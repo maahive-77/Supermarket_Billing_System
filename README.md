@@ -1,81 +1,93 @@
- 🛒 Supermarket Billing Queue System (C++)
+# 🛒 Supermarket Billing Queue System (C++)
 
-A D-Mart style billing system developed in C++ using Queue (FIFO) and File Handling, designed to simulate real-world supermarket billing operations.
+A **D-Mart style Supermarket Billing System** developed in **C++** using Queue Data Structure (FIFO).  
+This project simulates a real-world billing counter where customers are served in sequence, and bills are generated with GST calculation.
 
-📌 Features
-👥 Customer Queue Management (FIFO)
-🛍️ Multiple Items per Customer
-💰 Automatic Bill Calculation
-🧾 GST Calculation (18%)
-🖨️ Receipt Generation (Console Output)
-📂 File Handling (Save records in records.txt)
-📊 Structured Bill Format (like real supermarket)
-🧠 Concepts Used
-Queue Data Structure (STL)
-Object-Oriented Programming (OOP)
-File Handling (ofstream)
-Dynamic Data Storage (vector)
-Time & Date Handling (ctime)
-⚙️ How It Works
-Add Customer → Enter ID, Name, and Items
-Items → Name, Quantity, Price
-System calculates:
-Subtotal
-GST (18%)
-Final Total
-Customer is added to Queue
-Serve Customer:
-Generates Bill Receipt
-Saves data to file
-🧾 Sample Output
+---
+
+## 📌 Features
+
+✨ Queue-based customer handling (FIFO)  
+✨ Multiple items per customer  
+✨ Automatic bill calculation  
+✨ GST (18%) included  
+✨ Professional receipt generation  
+✨ File handling (records saved in `records.txt`)  
+✨ Menu-driven console interface  
+
+---
+
+## 🧠 Concepts Used
+
+- Queue (STL)
+- Object-Oriented Programming (OOP)
+- File Handling
+- Structures & Classes
+- Time & Date Handling
+- Formatting using `iomanip`
+
+---
+
+## 🛠️ Tech Stack
+
+- Language: **C++**
+- Compiler: g++, CodeBlocks, VS Code
+
+---
+
+## ⚙️ How It Works
+
+1. Customer enters billing queue  
+2. Items are added (name, quantity, price)  
+3. System calculates:
+   - Subtotal  
+   - GST (18%)  
+   - Final Total  
+4. Receipt is generated  
+5. Data is stored in `records.txt`  
+
+---
+
+## 📸 Sample Output
 =========== D-MART BILL ===========
 Customer ID: 101
-Name       : Rahul
+Name : Mahendra
 
 Items:
-Item           Qty       Price     Total
-Milk           2         50        100
-Bread          1         40        40
+Item Qty Price Total
+Rice 2 50 100
+Milk 1 30 30
 
-Subtotal : 140
-GST (18%): 25.2
-TOTAL    : 165.2
-Date: Tue Apr 07
-==================================
-📂 File Structure
-📁 Supermarket-Billing-System
- ├── main.cpp
- ├── records.txt
- └── README.md
-🚀 How to Run
-🔧 Compile:
-g++ main.cpp -o billing
-▶️ Run:
+Subtotal : 130
+GST (18%): 23.4
+TOTAL : 153.4
+
+Date: Tue Apr 7 12:30:00 2026  
+
+
+
+---
+
+
 ./billing
-📌 Future Enhancements
-🖥️ GUI Interface (like real billing software)
-🏪 Multiple Billing Counters
-💳 Payment Methods (Cash/Card/UPI)
-📦 Product Database Integration
-📊 Sales Analytics Dashboard
-🎯 Use Case
 
-This project is ideal for:
 
-🎓 BCA / B.Tech Students
-💼 Mini Projects / Viva
-🧪 Data Structure Practice
-🏪 Retail System Simulation
-🙋 Author
+## 📂 File Structure
 
-Sanna
-⭐ Support
+📁 Supermarket-Billing-System
+┣ 📄 main.cpp
+┣ 📄 records.txt
+┗ 📄 README.md
 
-If you like this project:
 
-⭐ Star the repository
-🍴 Fork it
-📢 Share with others
-📜 License
 
-This project is open-source and free to use for educational purposes.
+---
+
+## 🚀 How to Run
+
+### 🔹 Step 1: Compile
+```bash
+g++ main.cpp -o billing
+
+
+./billing
