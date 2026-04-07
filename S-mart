@@ -1,0 +1,179 @@
+ #include <iostream>
+#include <queue>
+#include <fstream>
+#include <ctime>
+#include <iomanip>
+using namespace std;
+
+// Item class
+class Item {
+public:
+    string name;
+    int qty;
+    float price;
+
+    Item(string n, int q, float p) {
+        name = n;
+        qty = q;
+        price = p;
+    }
+
+    float getTotal() {
+        return qty * price;
+    }
+};
+
+// Customer class
+class Customer {
+public:
+    int id;
+    string name;
+    vector<Item> items;
+    float subtotal, gst, total;
+
+    Customer(int i, string n) {
+        id = i;
+        name = n;
+        subtotal = 0;
+    }
+
+    void addItem(Item item) {
+        items.push_back(item);
+        subtotal += item.getTotal();
+    }
+
+    void calculateBill() {
+        gst = subtotal * 0.18;
+        total = subtotal + gst;
+    }
+};
+
+// Receipt
+void generateReceipt(Customer c) {
+    cout << "\n=========== S-MART BILL ===========\n";
+    cout << "Customer ID: " << c.id << endl;
+    cout << "Name       : " << c.name << endl;
+
+    cout << "\nItems:\n";
+    cout << left << setw(15) << "Item"
+         << setw(10) << "Qty"
+         << setw(10) << "Price"
+         << setw(10) << "Total" << endl;
+
+    for (auto item : c.items) {
+        cout << left << setw(15) << item.name
+             << setw(10) << item.qty
+             << setw(10) << item.price
+             << setw(10) << item.getTotal() << endl;
+    }
+
+    cout << "\nSubtotal : " << c.subtotal << endl;
+    cout << "GST (18%): " << c.gst << endl;
+    cout << "TOTAL    : " << c.total << endl;
+
+    time_t now = time(0);
+    cout << "Date: " << ctime(&now);
+
+    cout << "==================================\n";
+}
+
+// Save file
+void saveToFile(Customer c) {
+    ofstream file("records.txt", ios::app);
+
+    file << "\n===== BILL =====\n";
+    file << "ID: " << c.id << ", Name: " << c.name << endl;
+
+    for (auto item : c.items) {
+        file << item.name << " | Qty: " << item.qty
+             << " | Price: " << item.price
+             << " | Total: " << item.getTotal() << endl;
+    }
+
+    file << "Subtotal: " << c.subtotal << endl;
+    file << "GST: " << c.gst << endl;
+    file << "Total: " << c.total << endl;
+    file << "================\n";
+
+    file.close();
+}
+
+int main() {
+    queue<Customer> q;
+    int choice;
+
+    do {
+        cout << "\n==== S-MART BILLING SYSTEM ====\n";
+        cout << "1. Add Customer\n";
+        cout << "2. Serve Customer (Generate Bill)\n";
+        cout << "3. Show Queue\n";
+        cout << "4. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            int id, n;
+            string name;
+
+            cout << "Enter Customer ID: ";
+            cin >> id;
+            cout << "Enter Name: ";
+            cin >> name;
+
+            Customer c(id, name);
+
+            cout << "How many items? ";
+            cin >> n;
+
+            for (int i = 0; i < n; i++) {
+                string itemName;
+                int qty;
+                float price;
+
+                cout << "\nItem " << i + 1 << endl;
+                cout << "Name: ";
+                cin >> itemName;
+                cout << "Quantity: ";
+                cin >> qty;
+                cout << "Price: ";
+                cin >> price;
+
+                c.addItem(Item(itemName, qty, price));
+            }
+
+            c.calculateBill();
+            q.push(c);
+
+            cout << "Customer Added Successfully!\n";
+        }
+
+        else if (choice == 2) {
+            if (!q.empty()) {
+                Customer c = q.front();
+                q.pop();
+
+                generateReceipt(c);
+                saveToFile(c);
+
+                cout << "Billing Done!\n";
+            } else {
+                cout << "Queue Empty!\n";
+            }
+        }
+
+        else if (choice == 3) {
+            if (q.empty()) {
+                cout << "Queue Empty!\n";
+            } else {
+                queue<Customer> temp = q;
+                while (!temp.empty()) {
+                    cout << "Customer: " << temp.front().name << endl;
+                    temp.pop();
+                }
+            }
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
